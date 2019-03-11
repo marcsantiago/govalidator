@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -788,7 +789,8 @@ func ValidateStruct(s interface{}) (bool, error) {
 		result = result && resultField && structResult
 	}
 	if len(errs) > 0 {
-		err = errs
+		// return the top error only to reduce noise
+		err = errors.New(strings.TrimSpace(errs[0].Error()) + "\n")
 	}
 	return result, err
 }
