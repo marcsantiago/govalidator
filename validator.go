@@ -790,7 +790,7 @@ func ValidateStruct(s interface{}) (bool, error) {
 	}
 	if len(errs) > 0 {
 		// return the top error only to reduce noise
-		err = errors.New(strings.TrimSpace(errs[0].Error()) + "\n")
+		err = errors.New(strings.TrimSpace(errs[0].Error()))
 	}
 	return result, err
 }
